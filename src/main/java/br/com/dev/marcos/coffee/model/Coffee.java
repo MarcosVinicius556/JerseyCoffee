@@ -30,20 +30,50 @@ public class Coffee implements Serializable {
 	@FutureOrPresent(message = "A data de validade deve ser maior ou igual a hoje!")
 	private LocalDate expirationDate;
 	
+	public static class Builder {
+		private Long id;
+		private String name;
+		private Double price;
+		private LocalDate factoryDate;
+		private LocalDate expirationDate;
+		
+		public Builder setId(Long id) {
+			this.id = id;
+			return this;
+		}
+		public Builder setName(String name) {
+			this.name = name;
+			return this;
+		}
+		public Builder setPrice(Double price) {
+			this.price = price;
+			return this;
+		}
+		public Builder setFactoryDate(LocalDate factoryDate) {
+			this.factoryDate = factoryDate;
+			return this;
+		}
+		public Builder setExpirationDate(LocalDate expirationDate) {
+			this.expirationDate = expirationDate;
+			return this;
+		}
+		
+		public Coffee build() {
+			return new Coffee(this);
+		}
+		
+	}
+	
 	public Coffee() {
 		
 	}
 	
-	public Coffee(Long id, 
-			@NotBlank(message = "O nome não pode estar em branco!") String name,
-			@NotNull(message = "O Preço deve ser informado!") @PositiveOrZero(message = "O preço deve ser igual ou maior que zero!") Double price,
-			@PastOrPresent(message = "A data de fabricação deve ser menor ou igual a hoje!") LocalDate factoryDate,
-			@FutureOrPresent(message = "A data de validade deve ser maior ou igual a hoje!") LocalDate expirationDate) {
-		this.id = id;
-		this.name = name;
-		this.price = price;
-		this.factoryDate = factoryDate;
-		this.expirationDate = expirationDate;
+	public Coffee(Builder builder) {
+		this.id = builder.id;
+		this.name = builder.name;
+		this.price = builder.price;
+		this.factoryDate = builder.factoryDate;
+		this.expirationDate = builder.expirationDate;
 	}
 
 
