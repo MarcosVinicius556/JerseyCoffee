@@ -5,6 +5,8 @@ import java.util.List;
 
 import br.com.dev.marcos.coffee.model.Coffee;
 import br.com.dev.marcos.coffee.repositories.CoffeeRepository;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -29,10 +31,16 @@ public class CoffeeResource {
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response save(Coffee coffee) {
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response save(@Valid Coffee coffee) {
 		Coffee obj = CoffeeRepository.save(coffee);
 
 		//Após salvar, como boa prática, retornamos a URL de busca para a entidade salva
 		final URI coffeeURI = UriBuilder.fromResource(CoffeeResource.class).path("/coffee/{id}").build(obj.getId());
+		
+		ResponseBuilder response = Response.created(coffeeURI); //Criando retorno 201
+		response.entity(obj); //Definindo o conteudo do retorno
+		
+		return response.build(); // Gera o retorno
 	}
 }
