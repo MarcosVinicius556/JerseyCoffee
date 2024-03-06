@@ -1,4 +1,4 @@
-package br.com.dev.marcos.repositories;
+package br.com.dev.marcos.coffee.repositories;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class CoffeeRepository {
 		coffees.addAll(List.of(tresCoracoes, pilao));
 	}
 	
-	public static List<Coffe> findAll() {
+	public static List<Coffee> findAll() {
 		return coffees;
 	}
 	
