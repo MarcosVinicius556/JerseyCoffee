@@ -34,6 +34,11 @@ public class CoffeeRepository {
 	public static List<Coffee> findAll() {
 		return coffees;
 	}
+
+	public static Coffee save(Coffee coffee) {
+		System.err.println("Funcionalidade ainda não implementada");
+		return null;
+	}
 	
 	
 }
