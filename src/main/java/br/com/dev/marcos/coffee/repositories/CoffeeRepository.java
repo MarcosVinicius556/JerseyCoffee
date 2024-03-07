@@ -39,6 +39,16 @@ public class CoffeeRepository {
 		System.err.println("Funcionalidade ainda não implementada");
 		return null;
 	}
+
+	public static boolean delete(long id) {
+		System.err.println("Funcionalidade ainda não implementada");
+		return false;
+	}
+
+	public static Coffee findById(long id) {
+		System.err.println("Funcionalidade ainda não implementada");
+		return null;
+	}
 	
 	
 }
